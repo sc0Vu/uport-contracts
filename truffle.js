@@ -1,6 +1,7 @@
 var Web3 = require('web3');
 var HDWalletProvider = require("truffle-hdwallet-provider");
-var mnemonic = require('./testMnemonics')
+var mnemonic = require('./testMnemonics');
+var testRPC = require("ethereumjs-testrpc");
 
 module.exports = {
   networks: {
@@ -22,6 +23,10 @@ module.exports = {
       provider: new HDWalletProvider(mnemonic.ethereum, "https://mainnet.infura.io/"),
       gas: 4000000,
       gasPrice: 25000000000
+    },
+    test: {
+      network_id: '*',
+      provider: testRPC.provider({ seed: 'test' }),
     }
   }
 }
